@@ -9,7 +9,7 @@ import java.net.URL;
 
 public class HttpClient {
 
-    public String send(String hostname, Integer port, Invocation invocation) {
+    public String send(String hostname, Integer port, Invocation invocation) throws IOException {
         // 发送请求 (读取用户配置)
         try {
             URL url = new URL("http", hostname, port, "/");
@@ -54,9 +54,8 @@ public class HttpClient {
             }*/
 
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
-        return null;
 
     }
 }

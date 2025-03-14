@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class ProxyFactory {
 
-    public  static <T> T getProxy(Class interfaceClass){
+    public static <T> T getProxy(Class interfaceClass) {
         /**
          * 指定代理类的类加载器
          * 代理对象需要实现的接口列表
@@ -26,8 +26,8 @@ public class ProxyFactory {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 // 获取invocation
-                Invocation invocation = new Invocation(interfaceClass.getName(),method.getName(),
-                        method.getParameterTypes(),args);
+                Invocation invocation = new Invocation(interfaceClass.getName(), method.getName(),
+                        method.getParameterTypes(), args);
 
                 HttpClient httpClient = new HttpClient();
 
@@ -39,7 +39,16 @@ public class ProxyFactory {
                 URL url = LoadBalance.random(urlList);
 
                 // 服务调用
-                String res = httpClient.send(url.getHostname(), url.getPort(), invocation);
+                String res = null;
+                try {
+
+                    res = httpClient.send(url.getHostname(), url.getPort(), invocation);
+
+                } catch (Exception e) {
+                    // todo 容错逻辑
+                    return "服务调用错误";
+                }
+
 
                 return res;
             }
