@@ -14,7 +14,7 @@ public class MapRemoteRegister {
    private static  Map<String, List<URL>> map = new HashMap<>();
 
     public static void register(String interfaceName,URL url,String version){
-        List<URL> urlList = map.get(interfaceName+version);
+        List<URL> urlList = map.get(interfaceName);
         if(urlList == null){
             urlList = new ArrayList<>();
         }
@@ -25,7 +25,7 @@ public class MapRemoteRegister {
     }
 
     public static List<URL> get(String interfaceName,String version){
-       return map.get(interfaceName+version);
+       return map.get(interfaceName);
     }
 
 }

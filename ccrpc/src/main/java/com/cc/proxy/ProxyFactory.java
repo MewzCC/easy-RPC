@@ -2,6 +2,7 @@ package com.cc.proxy;
 
 import com.cc.common.Invocation;
 import com.cc.common.URL;
+import com.cc.loadbalance.LoadBalance;
 import com.cc.protocol.HttpClient;
 import com.cc.register.MapRemoteRegister;
 
@@ -29,10 +30,16 @@ public class ProxyFactory {
                         method.getParameterTypes(),args);
 
                 HttpClient httpClient = new HttpClient();
+
+                // 服务发现
                 List<URL> urlList = MapRemoteRegister.get(interfaceClass.getName(), "1.0");
 
                 // 负载均衡
-                String res = httpClient.send(, , invocation);
+                //URL url = new URL("localhost",8080);
+                URL url = LoadBalance.random(urlList);
+
+                // 服务调用
+                String res = httpClient.send(url.getHostname(), url.getPort(), invocation);
 
                 return res;
             }
