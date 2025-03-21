@@ -9,6 +9,7 @@ import com.cc.register.MapRemoteRegister;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +26,13 @@ public class ProxyFactory {
         Object proxyInstance = Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class[]{interfaceClass}, new InvocationHandler() {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                // mock 配置
+                String mock = System.getProperty("mock");
+                if(mock != null && mock.startsWith("return:")){
+                    String result = mock.replace("return:","");
+                    return result;
+                }
+
                 // 获取invocation
                 Invocation invocation = new Invocation(interfaceClass.getName(), method.getName(),
                         method.getParameterTypes(), args);
@@ -34,19 +42,28 @@ public class ProxyFactory {
                 // 服务发现
                 List<URL> urlList = MapRemoteRegister.get(interfaceClass.getName(), "1.0");
 
-                // 负载均衡
                 //URL url = new URL("localhost",8080);
-                URL url = LoadBalance.random(urlList);
 
-                // 服务调用
+                // 重试次数
+                int max = 3;
                 String res = null;
-                try {
+                List<URL> invokedUrls = new ArrayList<>(); //记录已经使用过的url
+                while (max>0) {
+                    // 负载均衡
+                    urlList.remove(invokedUrls);  //  清除失败的url
+                    URL url = LoadBalance.random(urlList);
+                    invokedUrls.add(url);
+                    // 服务调用
+                    res = null;
+                    try {
+                        res = httpClient.send(url.getHostname(), url.getPort(), invocation);
+                    } catch (Exception e) {
+                        if(max-- != 0) continue;
 
-                    res = httpClient.send(url.getHostname(), url.getPort(), invocation);
 
-                } catch (Exception e) {
-                    // todo 容错逻辑
-                    return "服务调用错误";
+                        //容错逻辑
+                        return "服务调用错误";
+                    }
                 }
 
 
