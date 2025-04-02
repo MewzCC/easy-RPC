@@ -1,9 +1,4 @@
-package com.cc;
-
-import com.cc.common.URL;
-import com.cc.protocol.HttpServer;
-import com.cc.register.LocalRegister;
-import com.cc.register.MapRemoteRegister;
+package com.easycc;
 
 public class BootStrap {
     public static void start(){

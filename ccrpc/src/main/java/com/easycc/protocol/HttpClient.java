@@ -1,6 +1,6 @@
-package com.cc.protocol;
+package com.easycc.protocol;
 
-import com.cc.common.Invocation;
+import com.easycc.common.Invocation;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;

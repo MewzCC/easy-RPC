@@ -1,7 +1,7 @@
 package com.easycc;
 
 
-import com.cc.proxy.ProxyFactory;
+import com.easycc.proxy.ProxyFactory;
 
 
 

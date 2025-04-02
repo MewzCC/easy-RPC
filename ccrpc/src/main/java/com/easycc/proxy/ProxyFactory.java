@@ -1,10 +1,10 @@
-package com.cc.proxy;
+package com.easycc.proxy;
 
-import com.cc.common.Invocation;
-import com.cc.common.URL;
-import com.cc.loadbalance.LoadBalance;
-import com.cc.protocol.HttpClient;
-import com.cc.register.MapRemoteRegister;
+import com.easycc.common.Invocation;
+import com.easycc.common.URL;
+import com.easycc.loadbalance.LoadBalance;
+import com.easycc.protocol.HttpClient;
+import com.easycc.register.MapRemoteRegister;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

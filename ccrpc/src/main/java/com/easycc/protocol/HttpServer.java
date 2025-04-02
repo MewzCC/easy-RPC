@@ -1,4 +1,4 @@
-package com.cc.protocol;
+package com.easycc.protocol;
 
 import org.apache.catalina.*;
 import org.apache.catalina.connector.Connector;

@@ -1,4 +1,4 @@
-package com.cc.common;
+package com.easycc.common;
 
 import java.io.Serializable;
 

@@ -1,9 +1,10 @@
 package com.easycc;
 
-import com.cc.common.URL;
-import com.cc.protocol.HttpServer;
-import com.cc.register.LocalRegister;
-import com.cc.register.MapRemoteRegister;
+import com.easycc.common.URL;
+import com.easycc.protocol.HttpServer;
+import com.easycc.register.LocalRegister;
+import com.easycc.register.MapRemoteRegister;
+import com.easycc.server.HelloServiceImpl;
 
 public class Provider {
     public static void main(String[] args) {

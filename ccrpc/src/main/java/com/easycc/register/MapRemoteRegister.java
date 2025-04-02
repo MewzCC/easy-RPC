@@ -1,6 +1,6 @@
-package com.cc.register;
+package com.easycc.register;
 
-import com.cc.common.URL;
+import com.easycc.common.URL;
 
 import java.io.*;
 import java.util.ArrayList;

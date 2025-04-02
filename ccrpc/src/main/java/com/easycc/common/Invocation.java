@@ -1,4 +1,4 @@
-package com.cc.common;
+package com.easycc.common;
 
 import java.io.Serializable;
 
@@ -12,8 +12,8 @@ public class Invocation implements Serializable {
     private String methodName;
 
 
-    /** 方法的参数类型数组。 */
-    private Class[] parameterTypes;
+    /** 方法的参数类型 */
+    private Class<?>[] parameterTypes;
 
     /** 传递给方法的实际参数值数组。 */
     private Object[] parameters;

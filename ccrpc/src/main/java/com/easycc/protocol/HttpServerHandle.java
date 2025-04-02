@@ -1,14 +1,12 @@
-package com.cc.protocol;
+package com.easycc.protocol;
 
-import com.cc.common.Invocation;
-import com.cc.register.LocalRegister;
+import com.easycc.common.Invocation;
+import com.easycc.register.LocalRegister;
 import org.apache.commons.io.IOUtils;
 
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import java.lang.reflect.Method;

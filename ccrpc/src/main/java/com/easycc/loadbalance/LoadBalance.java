@@ -1,6 +1,6 @@
-package com.cc.loadbalance;
+package com.easycc.loadbalance;
 
-import com.cc.common.URL;
+import com.easycc.common.URL;
 
 import java.util.List;
 import java.util.Random;

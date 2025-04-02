@@ -1,4 +1,4 @@
-package com.cc.register;
+package com.easycc.register;
 
 import java.util.HashMap;
 import java.util.Map;
