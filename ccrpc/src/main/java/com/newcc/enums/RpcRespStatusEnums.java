@@ -19,4 +19,12 @@ public enum RpcRespStatusEnums {
         this.msg = msg;
     }
 
+    public static boolean isSuccessful(Integer code){
+     return code.equals(SUCCESS.getCode());
+    }
+
+    public static boolean isFailed(Integer code){
+        return !isSuccessful(code);
+    }
+
 }
