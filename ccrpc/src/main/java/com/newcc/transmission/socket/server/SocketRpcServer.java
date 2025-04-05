@@ -3,9 +3,11 @@ package com.newcc.transmission.socket.server;
 import com.newcc.config.RpcServiceConfig;
 import com.newcc.dto.RpcRequest;
 import com.newcc.dto.RpcResponse;
+import com.newcc.factory.SingletonFactory;
 import com.newcc.handler.RpcRequestHandler;
 import com.newcc.provider.ServiceProvider;
 import com.newcc.provider.impl.SimpleServiceProvider;
+import com.newcc.provider.impl.ZkServiceProvider;
 import com.newcc.transmission.RpcServer;
 import com.newcc.utils.ThreadPoolUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +29,7 @@ public class SocketRpcServer implements RpcServer {
     private final ExecutorService executors;
 
     public SocketRpcServer(int port) {
-        this(port, new SimpleServiceProvider());
+        this(port, SingletonFactory.getInstance(ZkServiceProvider.class));
     }
 
     public SocketRpcServer(int port, ServiceProvider serviceProvider) {
